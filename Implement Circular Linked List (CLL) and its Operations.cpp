@@ -9,23 +9,23 @@ struct Node {
 class LinkedList {
 private:
     Node* head;
-    Node* tail; 
 
 public:
     LinkedList() {
-        head = nullptr;
-        tail = nullptr;
+        head = NULL;
     }
 
     Node* CreateNode() {
-        return new Node;
+        Node* newNode = new Node;
+        newNode->Next = NULL;
+        return newNode;
     }
 
     void InsertAtEnd(int value) {
         Node* NewNode = CreateNode();
         NewNode->data = value;
 
-        if (head == nullptr) {
+        if (head == NULL) {
             NewNode->Next = NewNode;
             head = NewNode;
         } else {
@@ -42,7 +42,7 @@ public:
         Node* NewNode = CreateNode();
         NewNode->data = value;
 
-        if (head == nullptr) {
+        if (head == NULL) {
             NewNode->Next = NewNode;
             head = NewNode;
             return;
@@ -58,7 +58,7 @@ public:
     }
 
     void traverse() {
-        if (head == nullptr) return;
+        if (head == NULL) return;
         Node* temp = head;
         do {
             cout << temp->data << " ";
@@ -68,7 +68,7 @@ public:
     }
 
     void findTheMiddle() {
-        if (head == nullptr) {
+        if (head == NULL) {
             cout << "List is empty\n";
             return;
         }
@@ -92,7 +92,7 @@ public:
             return;
         }
 
-        if (head == nullptr) {
+        if (head == NULL) {
             if (index == 0) {
                 Node* NewNode = CreateNode();
                 NewNode->data = value;
@@ -127,10 +127,10 @@ public:
     }
 
     void deleteFromEnd() {
-        if (head == nullptr) return;
+        if (head == NULL) return;
         if (head->Next == head) {
             delete head;
-            head = nullptr;
+            head = NULL;
             return;
         }
         Node* temp = head;
@@ -142,10 +142,10 @@ public:
     }
 
     void deleteFromBeginning() {
-        if (head == nullptr) return;
+        if (head == NULL) return;
         if (head->Next == head) {
             delete head;
-            head = nullptr;
+            head = NULL;
             return;
         }
         Node* temp = head;
@@ -159,7 +159,7 @@ public:
     }
 
     void deleteFromIndex(int index) {
-        if (head == nullptr) return;
+        if (head == NULL) return;
         if (index == 0) {
             deleteFromBeginning();
             return;
@@ -180,18 +180,17 @@ public:
     }
 
     void reverse() {
-        if (head == nullptr || head->Next == head) return;
+        if (head == NULL || head->Next == head) return;
 
-        Node* prev = nullptr;
+        Node* prev = NULL;
         Node* current = head;
-        Node* Next = nullptr;
-        Node* tail = head;
+        Node* Next = NULL;
+        Node* last = head;
 
-        while (tail->Next != head) {
-            tail = tail->Next;
+        while (last->Next != head) {
+            last = last->Next;
         }
 
-        Node* stop = head;
         do {
             Next = current->Next;
             current->Next = prev;
@@ -201,6 +200,7 @@ public:
 
         head->Next = prev;
         head = prev;
+        last->Next = head; // maintain circular link
     }
 };
 
