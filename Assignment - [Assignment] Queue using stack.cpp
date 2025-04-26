@@ -35,15 +35,13 @@ public:
             if (!s2.empty()) {
                 return s2.top();
             }
-            // Agar yahan tak aa gaye, queue khali hai
+            
             cout << "Queue is empty!" << endl;
-            return -1; // Ya kuch error value
+            return -1;
         }
     }
 
-    bool Empty() {
-        return s1.empty() && s2.empty();
-    }
+    
 };
 
 int main() {
