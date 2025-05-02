@@ -102,7 +102,7 @@ int main() {
         q.pop();
     }
 
-    q.pop(); // Empty pop
+    q.pop(); 
 
     return 0;
 }
