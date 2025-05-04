@@ -7,20 +7,20 @@ struct Node {
 };
 
 void CheckLoop(Node* head) {
-    Node* temp = head;
-    unordered_map<Node*, int> mpp;
 
-    while (temp != nullptr) {
-        if (mpp.find(temp) != mpp.end()) {
-            cout << "There is a loop" << endl;
-            return;
-        } else {
-            mpp[temp] = 1;
-        }
-        temp = temp->Next;
-    }
-
-    cout << "There is no loop" << endl;
+    Node* slow= head;
+	Node* fast= head;
+	while(fast != nullptr && fast->Next != nullptr){
+		slow=slow->Next;
+		fast=fast->Next->Next;
+			if(slow==fast){
+			cout<<"There is a loop"<<endl;
+			return ;
+		}
+	
+	}
+	
+  cout<<"There is no loop"<<endl;
 }
 
 int main() {
@@ -54,26 +54,26 @@ int main() {
 //the code where loop dosent exist
 
 
-//    Node* first = new Node();
-//    Node* second = new Node();
-//    Node* third = new Node();
-//    Node* fourth = new Node();
-//    Node* fifth = new Node();
-//
-//    first->data = 10;
-//    first->Next = second;
-//
-//    second->data = 20;
-//    second->Next = third;
-//
-//    third->data = 30;
-//    third->Next = fourth;
-//
-//    fourth->data = 40;
-//    fourth->Next = fifth;
-//
-//    fifth->data = 50;
-//    fifth->Next = nullptr; 
+    Node* first = new Node();
+    Node* second = new Node();
+    Node* third = new Node();
+    Node* fourth = new Node();
+    Node* fifth = new Node();
+
+    first->data = 10;
+    first->Next = second;
+
+    second->data = 20;
+    second->Next = third;
+
+    third->data = 30;
+    third->Next = fourth;
+
+    fourth->data = 40;
+    fourth->Next = fifth;
+
+    fifth->data = 50;
+    fifth->Next = nullptr; 
 
     head = first;
 
